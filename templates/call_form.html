@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h2>Phone Call Request Form</h2>
+    <form action="{{ call_url }}" method="post">
+        <dl>
+            <dt>From:
+            <dd><input type="text" name="from">
+            <dt>To:
+            <dd><input type="text" name="to">
+        </dl>
+    </form>
+{% endblock %}
+
