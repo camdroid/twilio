@@ -1,5 +1,7 @@
 from flask import Flask
+from flask import render_template
 import twilio.twiml
+from config import call_url
 
 app = Flask(__name__)
 
@@ -10,6 +12,12 @@ def hello_monkey():
     resp.say("Hello Cam")
 
     return str(resp)
+
+
+@app.route("/make_call", methods=['GET'])
+def make_call():
+    ''' Make outgoing calls according to the parameters given '''
+    return render_template('call_form.html', call_url=call_url)
 
 if __name__ == "__main__":
     app.run(debug=True)
