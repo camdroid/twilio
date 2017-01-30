@@ -34,7 +34,7 @@ def make_call():
 def receive_call():
     log.msg('Receiving call')
     resp = twilio.twiml.Response()
-    resp.say('You\'ve reached Cam, please call back later.')
+    resp.play('http://demo.twilio.com/hellomonkey/monkey.mp3')
     return str(resp)
 
 

@@ -8,12 +8,16 @@ class TwilioHelper(object):
     def __init__(self):
         self.log = Log()
         self.client = TwilioRestClient(sid, token)
+        # TODO Will need to eventually replace this with an actual url
+        self.call_url = 'https://dee6942a.ngrok.io'
 
     def call(self, to):
         from_ = self.get_number_for_call()
         print('Placing call from {} to {}'.format(from_, to))
-        return
-        call = self.client.calls.create(url=call_url+'/receive_call', to=to, from_=from_)
+        call = self.client.calls.create(url=self.call_url+'/receive_call',
+                                        to=to, from_=from_)
+        self.log.msg('Call result: {}'.format(call))
+        return call
 
     def get_available_numbers(self):
         account = self.client.accounts.get(sid)
