@@ -16,13 +16,13 @@ def hello_monkey():
 
 
 @app.route("/make_call", methods=['GET'])
-def make_call():
+def prep_call():
     ''' Make outgoing calls according to the parameters given '''
     return render_template('call_form.html', call_url='/make_call')
 
 
 @app.route('/make_call', methods=['POST'])
-def actually_make_call():
+def make_call():
     tw.call(request.form['to'])
     return render_template('call_placed.html')
 
@@ -30,8 +30,8 @@ def actually_make_call():
 @app.route('/receive_call', methods=['GET', 'POST'])
 def receive_call():
     resp = twilio.twiml.Response()
-    resp.say('You\'ve reached Cam, call back later.')
-    return render_template('call_placed.html')
+    resp.say('You\'ve reached Cam, please call back later.')
+    return str(resp)
 
 
 if __name__ == "__main__":

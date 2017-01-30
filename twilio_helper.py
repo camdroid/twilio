@@ -16,8 +16,10 @@ class TwilioHelper(object):
     def get_available_numbers(self):
         account = self.client.accounts.get(sid)
         raw_numbers = account.incoming_phone_numbers.list()
-        numbers = [num.phone_number for num in raw_numbers]
-        return numbers
+        if raw_numbers:
+            numbers = [num.phone_number for num in raw_numbers]
+            return numbers
+        raise Exception("Couldn't find any numbers with this account")
 
     def get_number_for_call(self):
         # TODO This should take in the 'to' number to try to match
