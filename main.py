@@ -3,9 +3,12 @@ from flask import render_template
 from flask import request
 import twilio.twiml
 import twilio_helper
+from log import Log
 
 app = Flask(__name__)
 tw = twilio_helper.TwilioHelper()
+log = Log()
+
 
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
@@ -29,6 +32,7 @@ def make_call():
 
 @app.route('/receive_call', methods=['GET', 'POST'])
 def receive_call():
+    log.msg('Receiving call')
     resp = twilio.twiml.Response()
     resp.say('You\'ve reached Cam, please call back later.')
     return str(resp)

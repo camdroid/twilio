@@ -1,10 +1,12 @@
 from secrets import twilio_account_sid as sid
 from secrets import twilio_account_token as token
 from twilio.rest import TwilioRestClient
+from log import Log
 
 
 class TwilioHelper(object):
     def __init__(self):
+        self.log = Log()
         self.client = TwilioRestClient(sid, token)
 
     def call(self, to):
