@@ -9,7 +9,7 @@ class TwilioHelper(object):
         self.log = Log()
         self.client = TwilioRestClient(sid, token)
         # TODO Will need to eventually replace this with an actual url
-        self.call_url = 'https://dee6942a.ngrok.io'
+        self.call_url = 'https://5a9b4d12.ngrok.io'
 
     def call(self, to):
         from_ = self.get_number_for_call()
